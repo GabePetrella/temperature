@@ -22,6 +22,8 @@
  * </code></pre>
  */
 
+import java.math.BigDecimal;
+
 public class Temperature {
 
   /** Enumerator for different temperature units */
@@ -62,6 +64,9 @@ public class Temperature {
           case CELSIUS:    convertedValue = value + 273.15;
                            break;
           case FAHRENHEIT: convertedValue = (value + 459.67) * 5.0/9.0;
+                           // BigDecimal roundedValue = new BigDecimal(convertedValue).setScale(6, BigDecimal.ROUND_HALF_UP);
+                           // System.out.println(roundedValue);
+                           // convertedValue = roundedValue.doubleValue();
                            break;
           default:         throw new IllegalArgumentException();
       }
@@ -73,19 +78,19 @@ public class Temperature {
    * @param value numerical value of Temperature
    */
   protected double convertFromKelvin(double value) {
-      double convertedValue;
+      BigDecimal convertedValue;
 
       switch (units) {
-          case KELVIN:     convertedValue = value;
+          case KELVIN:     convertedValue = new BigDecimal(value).setScale(6, BigDecimal.ROUND_HALF_UP);
                            break;
-          case CELSIUS:    convertedValue = value - 273.15;
+          case CELSIUS:    convertedValue = new BigDecimal(value - 273.15).setScale(6, BigDecimal.ROUND_HALF_UP);
                            break;
-          case FAHRENHEIT: convertedValue = value * 9.0/5.0 - 459.67;
+          case FAHRENHEIT: convertedValue = new BigDecimal(value * 9.0/5.0 - 459.67).setScale(6, BigDecimal.ROUND_HALF_UP);
                            break;
           default:         throw new IllegalArgumentException();
       }
 
-      return convertedValue;
+      return convertedValue.doubleValue();
   }
 
   /** Format {@code Units}

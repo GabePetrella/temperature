@@ -26,5 +26,4 @@ public class TemperatureTest {
      assertTrue(tmp.getValue() == 15.5);
   }
 
-
 }
