@@ -64,9 +64,6 @@ public class Temperature {
           case CELSIUS:    convertedValue = value + 273.15;
                            break;
           case FAHRENHEIT: convertedValue = (value + 459.67) * 5.0/9.0;
-                           // BigDecimal roundedValue = new BigDecimal(convertedValue).setScale(6, BigDecimal.ROUND_HALF_UP);
-                           // System.out.println(roundedValue);
-                           // convertedValue = roundedValue.doubleValue();
                            break;
           default:         throw new IllegalArgumentException();
       }
